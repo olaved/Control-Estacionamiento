@@ -1,0 +1,81 @@
+<p>auto works!</p>
+<h1>Editar Ticket</h1>
+
+<div class="row text-right animated fadeIn faster">
+    <div class="col">
+        <button [routerLink]="['/autos']" routerLinkActive="router-link-active"  class="btn btn-danger">
+            <i class="fa fa-arrow-left"></i>
+            Regresar
+        </button>
+    </div>
+</div>
+
+
+<form (ngSubmit)="guardar(f)" 
+    #f="ngForm">
+
+    <div class="form-group mb-5">
+        <label>Codigo</label>
+        <input type="text"
+            class="form-control"
+            disabled="disabled"
+            placeholder="Firebase ID"
+            [(ngModel)]="auto.id"
+            name="id"
+            >
+    </div>
+
+    <div class="form-group">
+        <label>Patente</label>
+        <input type="text"
+            class="form-control"
+            placeholder="Ingresar Patente"
+            [(ngModel)]="auto.patente"
+            name="patente"
+            required>
+    </div>
+
+    <div class="form-group">
+        <label>Fecha</label>
+        <input type="text"
+            class="form-control"
+            placeholder="Ingresar Fecha"
+            [(ngModel)]="auto.fecha"
+            name="fecha">
+    </div>
+
+    <div class="form-group">
+        <label>Hora</label>
+        <input type="text"
+            class="form-control"
+            placeholder="Ingresar Hora"
+            [(ngModel)]="auto.hora"
+            name="hora"
+            >
+    </div>
+
+    <div class="form-group">
+        <label>activo</label>
+        <br>
+        <button *ngIf="auto.activo" 
+            (click)="auto.activo=false"
+            class="btn btn-outline-success" w-50 type="button">
+            <i class="fa fa-check-circle"></i>
+        </button> 
+        <button *ngIf="!auto.activo" 
+            (click)="auto.activo=true" 
+            class="btn btn-outline-danger" w-50 type="button">
+            <i class="fa fa-ban"></i>
+        </button> 
+    </div>
+
+    <hr>
+
+    <div class="form-group text-center mb-5">
+        <button type="submit" class="btn-primary w-25 p-1">
+            Guardar
+        </button>
+
+    </div>
+
+</form>
