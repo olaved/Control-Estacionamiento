@@ -7,6 +7,14 @@ export class AutoModel{
     fecha:string;
     activo:boolean;
     hora: string;
+    codigo: string;
+    monto: number;
+    minutos: number;
+    fecha_salida: Date;
+    hora_salida: number;
+    foto:string;
+    pagado: boolean;
+
 
 
     constructor(){

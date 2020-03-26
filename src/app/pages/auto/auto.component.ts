@@ -12,8 +12,13 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './auto.component.html',
   styleUrls: ['./auto.component.css']
 })
+
+
 export class AutoComponent implements OnInit {
 
+
+  today: number = Date.now();
+  
   auto: AutoModel = new AutoModel();
 
   constructor( private autosService: AutosService,
@@ -55,7 +60,7 @@ export class AutoComponent implements OnInit {
         peticion.subscribe(resp=>{
 
           Swal.fire({
-            title: this.auto.patente,
+            title: this.auto.patente.toUpperCase(),
             text: 'Se actualizo correctamente',
             icon: 'success'
           });
@@ -68,7 +73,7 @@ export class AutoComponent implements OnInit {
         peticion.subscribe(resp=>{
 
           Swal.fire({
-            title: this.auto.patente,
+            title: this.auto.patente.toUpperCase(),
             text: 'Se a creado correctamente',
             icon: 'success'
           });

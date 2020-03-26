@@ -7,18 +7,42 @@ import { AutosComponent } from './pages/autos/autos.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { PagadosComponent } from './pages/pagados/pagados.component';
+
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// RECOMMENDED
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { ConfigComponent } from './configuracion/config/config.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { CodebarComponent } from './pages/codebar/codebar.component';
+
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AutoComponent,
-    AutosComponent
+    AutosComponent,
+    PagadosComponent,
+    NavbarComponent,
+    ConfigComponent,
+    FilterPipe,
+    CodebarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BsDatepickerModule.forRoot(),
+    BrowserAnimationsModule,
+    TimepickerModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

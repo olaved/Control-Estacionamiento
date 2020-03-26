@@ -1,4 +1,3 @@
-<p>auto works!</p>
 <h1>Editar Ticket</h1>
 
 <div class="row text-right animated fadeIn faster">
@@ -25,34 +24,91 @@
             >
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
         <label>Patente</label>
+        <div>
         <input type="text"
             class="form-control"
             placeholder="Ingresar Patente"
             [(ngModel)]="auto.patente"
             name="patente"
-            required>
+            minlength="6"
+            maxlength="7"
+            pattern="([A-Za-z0-9]+\-?[a-z0-9]{2,3}$)"
+            required
+            #patente="ngModel"
+            >
+        <div *ngIf="patente.errors?.required">
+            Este campo es requerido
+        </div>
+        <div *ngIf="patente.errors?.pattern" style="color: red;">
+            Este campo no tiene formato de patente
+        </div>
+        </div>
     </div>
 
-    <div class="form-group">
+ <!--   <div class="form-group">
         <label>Fecha</label>
         <input type="text"
             class="form-control"
             placeholder="Ingresar Fecha"
             [(ngModel)]="auto.fecha"
-            name="fecha">
+            name="fecha"
+            required>
     </div>
+-->
+        <div class="form-group mb-3">
+            <label>Fecha</label>
+            <input
+              class="form-control"
+              placeholder="01-01-2020"
+              bsDatepicker
+              [(ngModel)]="auto.fecha"
+              name="fecha"
+              [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-blue', isAnimated: true}"
+              required>
+        </div>
 
-    <div class="form-group">
+ <!-- <div class="form-group">
         <label>Hora</label>
+        <div>
         <input type="text"
             class="form-control"
-            placeholder="Ingresar Hora"
+            placeholder="01:01:00"
             [(ngModel)]="auto.hora"
             name="hora"
+            minlength="8"
+            maxlength="8"
+            pattern="1*[4-9]|[0-2][0-3]+\:[0-5][0-9]+\:[0-5][0-9]"
+            required
+            #hora="ngModel"
             >
+            <div *ngIf="hora.errors?.required">
+                Este campo es requerido
+            </div>
+            <div *ngIf="hora.errors?.pattern" style="color: red;">
+                Este campo no tiene formato de hora
+            </div>
+        </div>
     </div>
+-->
+
+    <div class="md-form mb-3">
+        <label>Hora de Ingreso</label>
+        <input
+          type="time"
+          id="input"
+          class="form-control"
+          value="13:00"
+          mdbInput
+          name="hora"
+          [(ngModel)]="auto.hora"
+          required />
+      </div>
+
+  <!--  <p>Or if you prefer, {{today | date:'HH:mm:ss'}}</p>  -->
+
+
 
     <div class="form-group">
         <label>activo</label>
