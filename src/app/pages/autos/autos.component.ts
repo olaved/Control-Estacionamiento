@@ -122,6 +122,9 @@ export class AutosComponent implements OnInit {
     let monto = 12*total_minutos;
     //console.log(mes[mes_ticket-1]);
 
+    if((total_minutos>834)&&(total_minutos<=1440)){
+      monto=10000;
+    }
 
     if(total_minutos>1440){
         monto=10000+Math.trunc((total_minutos-1440)/1440)*5000;
