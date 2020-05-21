@@ -45,7 +45,7 @@ export class AutosComponent implements OnInit {
          let codeinvertido = reverseString(code);
          codeinvertido = codeinvertido.slice(0,13);
          code = reverseString(codeinvertido);
-         //console.log(code);
+         console.log(code);
          this.word='';
          for (let i in this.autos){
             if (code == this.autos[i].codigo){

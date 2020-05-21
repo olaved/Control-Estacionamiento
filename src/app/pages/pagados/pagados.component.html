@@ -1,4 +1,4 @@
-<h1>Listado de Tickets</h1>
+<h1>Tickets Pagados</h1>
 <hr>
 
 <!--
@@ -19,7 +19,7 @@
         <th scope="col">Minutos</th>
         <th scope="col">Monto</th>
         <th scope="col">Estado</th>
-      <!--  <th scope="col">Foto</th> -->
+        <th scope="col">Foto</th> 
         <th scope="col">Herramientas</th>
       </tr>
     </thead>
@@ -40,8 +40,8 @@
             <label *ngIf="auto.activo" class="badge badge-success">activo</label>
             <label *ngIf="!auto.activo"class="badge badge-danger">desactivo</label>
           </td>
-     <!--     <td><img [src]="auto.foto" width="100" heigth="50" alt="" (click)="MostrarFoto( auto, i)" ></td>
-      -->  <td>
+          <td><img [src]="auto.foto" width="100" heigth="50" alt="" (click)="MostrarFoto( auto, i)" ></td>
+          <td>
             <button class="btn btn-info mr-1" [routerLink]="['/auto', auto.id]"> 
               <i class="fa fa-edit"></i>
             </button>

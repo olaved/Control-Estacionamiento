@@ -22,7 +22,7 @@
         <th scope="col">#</th>
         <th scope="col">Codigo</th>
         <th scope="col">Patente</th>
-       <!-- <th scope="col">Foto</th>-->
+        <th scope="col">Foto</th>
         <th scope="col">Fecha</th>
         <th scope="col">Hora</th>
         <th scope="col">Estado</th>
@@ -35,8 +35,8 @@
         <th scope="row">{{i+1}}</th>
         <td>{{auto.codigo}}</td>
         <td>{{auto.patente.toUpperCase().replace('-','')}}</td>
-     <!--   <td><img [src]="auto.foto" width="100" heigth="50" alt="" (click)="MostrarFoto( auto, i)" ></td>
-      -->  <td>{{auto.fecha.slice(0,10)}}</td>
+        <td><img [src]="auto.foto" width="100" heigth="50" alt="" (click)="MostrarFoto( auto, i)" ></td>
+        <td>{{auto.fecha.slice(0,10)}}</td>
         <td>{{auto.hora.slice(0,5)}}</td>
           <td>
             <label *ngIf="auto.activo"class="badge badge-success">activo</label>

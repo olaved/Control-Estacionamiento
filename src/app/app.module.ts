@@ -19,6 +19,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ConfigComponent } from './configuracion/config/config.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { CodebarComponent } from './pages/codebar/codebar.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 
@@ -34,6 +35,7 @@ import { CodebarComponent } from './pages/codebar/codebar.component';
     ConfigComponent,
     FilterPipe,
     CodebarComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
