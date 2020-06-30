@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { LoginComponent } from 'src/app/pages/login/login.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,8 @@ import { LoginComponent } from 'src/app/pages/login/login.component';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor( private router:Router  ) { }
+  constructor( private auth: AuthService,
+               private router:Router  ) { }
   ngOnInit() {
   }
 
@@ -18,4 +20,9 @@ export class NavbarComponent implements OnInit {
     this.router.navigate( ['/buscar', termino] );
   }
 
+  salir(){
+
+    this.auth.logout();
+    this.router.navigateByUrl('/login');
+  }
 }

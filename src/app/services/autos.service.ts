@@ -28,7 +28,6 @@ export class AutosService {
    borrarAuto( id:string ){
 
     return this.http.delete(`${ this.url }/autos/${ id }.json`);
-
    }
 
 

@@ -1,0 +1,71 @@
+import { Component, OnInit } from '@angular/core';
+import { UsuarioModel } from 'src/app/models/usuario.model';
+import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { delay } from 'rxjs/operators';
+
+@Component({
+  selector: 'app-registro',
+  templateUrl: './registro.component.html',
+  styleUrls: ['./registro.component.css']
+})
+export class RegistroComponent implements OnInit {
+
+  usuario: UsuarioModel;
+  recordarme: false;
+
+  constructor( private auth: AuthService,
+               private router: Router ) { }
+
+  ngOnInit() {
+
+    this.usuario = new UsuarioModel();
+  
+  }
+
+  onSubmit( form: NgForm) {
+
+    if (form.invalid){return;}
+   
+    Swal.fire({
+      allowOutsideClick: false,
+      title: 'Espere por favor...',
+      timer: 3000
+    });
+    Swal.showLoading();
+    
+    this.auth.nuevoUsuario( this.usuario )
+        .subscribe( resp =>{
+            console.log(resp);
+
+            if( this.recordarme){
+                localStorage.setItem('email', this.usuario.email);
+            }
+
+            Swal.fire({
+              allowOutsideClick: false,
+              icon: 'success',
+              title: 'Su cuenta se a creado exitosamente',
+              showConfirmButton: true
+            });
+
+            this.router.navigateByUrl('/login');  
+
+        }, (err) => {
+          //console.log(err.error.error.message);        
+          
+          Swal.fire({
+            icon: 'error',
+            title: 'Error autentificacion',
+            text: err.error.error.message,
+            allowOutsideClick: false,
+          });
+
+        });
+    //console.log('Formulario enviado');
+    //console.log(this.usuario);
+  }
+
+}

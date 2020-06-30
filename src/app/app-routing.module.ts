@@ -7,13 +7,17 @@ import { AutoComponent } from './pages/auto/auto.component';
 import { PagadosComponent } from './pages/pagados/pagados.component';
 import { CodebarComponent } from './pages/codebar/codebar.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RegistroComponent } from './pages/registro/registro.component';
+import { AuthGuard } from './guard/auth.guard';
+
 
 const routes: Routes = [
-    { path: 'autos', component: AutosComponent },
-    { path: 'auto/:id', component: AutoComponent },
-    { path: 'pagados', component: PagadosComponent},
+    { path: 'autos', component: AutosComponent, canActivate: [AuthGuard] },
+    { path: 'auto/:id', component: AutoComponent, canActivate: [AuthGuard]  },
+    { path: 'pagados', component: PagadosComponent, canActivate: [AuthGuard]  },
     { path: 'codebar', component: CodebarComponent},
     { path: 'login', component: LoginComponent},
+    { path: 'registro', component: RegistroComponent},
     { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 

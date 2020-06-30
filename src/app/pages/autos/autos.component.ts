@@ -25,13 +25,14 @@ export class AutosComponent implements OnInit {
 
 }
 
+  /*
   lastPressed = 'nothing';
   word = '';
   @HostListener('window:keydown', ['$event.key'])
   next(key: string) {
     this.lastPressed = key;
     this.word =this.word + key;
-    //console.log(this.word);
+    console.log(this.word);
     //if ((this.word.length)>10){
       //console.log(this.autos);
        //console.log(this.autos[i].codigo);
@@ -58,6 +59,41 @@ export class AutosComponent implements OnInit {
     }
   }
 
+*/
+
+lastPressed = 'nothing';
+word = '';
+@HostListener('window:keydown', ['$event.key'])
+next(key: string) {
+  this.lastPressed = key;
+  this.word =this.word.replace("Shift","") + key;
+  console.log(this.word);
+  //if ((this.word.length)>10){
+    //console.log(this.autos);
+     //console.log(this.autos[i].codigo);
+     if((this.word.indexOf("Enter")>-1)){
+       function reverseString(str) {
+       return str.split('').reverse().join('');
+       }
+       //console.log('contiene el codigo');
+       console.log(this.word);
+       let code = this.word.replace("Enter","");
+       console.log(code);
+       let codeinvertido = reverseString(code);
+       codeinvertido = codeinvertido.slice(0,12);     
+       code = reverseString(codeinvertido);
+       //console.log(code);
+       this.word='';
+       for (let i in this.autos){
+          if (code == this.autos[i].codigo){
+            //console.log("Encontro el codigo");
+            if( this.autos[i].pagado != true){
+              this.pagarAuto(this.autos[i], 0 );
+            }
+          }
+     }
+  }
+}
 
 
   borrarAuto( auto: AutoModel, i:number ){
@@ -73,7 +109,7 @@ export class AutosComponent implements OnInit {
           
           this.autos.splice(i, 1);  //borrar del arreglo
           this.autosService.borrarAuto( auto.id ).subscribe();
-
+          location.reload();
         }
 
     })
@@ -237,4 +273,5 @@ export class AutosComponent implements OnInit {
 
   }
 
+  
 }

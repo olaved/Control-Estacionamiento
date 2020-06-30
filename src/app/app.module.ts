@@ -20,6 +20,7 @@ import { ConfigComponent } from './configuracion/config/config.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { CodebarComponent } from './pages/codebar/codebar.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RegistroComponent } from './pages/registro/registro.component';
 
 
 
@@ -36,6 +37,7 @@ import { LoginComponent } from './pages/login/login.component';
     FilterPipe,
     CodebarComponent,
     LoginComponent,
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,
