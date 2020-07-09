@@ -16,6 +16,7 @@
                            type="text" 
                            name="email" 
                            [(ngModel)]="usuario.email"
+                           #email="ngModel"
                            required
                            email
                            placeholder="Email">
@@ -30,6 +31,7 @@
                            type="text" 
                            name="nombre" 
                            [(ngModel)]="usuario.nombre"
+                           #nombre="ngModel"
                            required
                            placeholder="Nombre y apellidos">
 
@@ -47,7 +49,24 @@
                            placeholder="Password">
                     <span class="focus-input100"></span>
                 </div>
-                
+   
+
+
+                <span *ngIf="f.submitted && f.controls['rol'].errors"
+                class="text-danger animated fadeIn">El rol</span>
+           <div class="wrap-input100 m-b-16">
+                <select class="form-control"
+                    type="text" 
+                    name="rol" 
+                    [(ngModel)]="usuario.rol"
+                    required
+                >
+                    <option>Operador</option>
+                    <option>Administrador</option>
+                </select>
+             
+           </div>
+
                 <div class="flex-sb-m w-full p-t-3 p-b-24">
                     <div class="contact100-form-checkbox">
                         <input [(ngModel)]="recordarme" 

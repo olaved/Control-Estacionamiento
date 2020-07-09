@@ -30,6 +30,7 @@
       </tr>
     </thead>
     <tbody>
+     
       <tr *ngFor="let auto of autos| filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost} :false; let i =index">
         <ng-container *ngIf="auto.activo==true">
         <th scope="row">{{i+1}}</th>
@@ -43,18 +44,21 @@
             <label *ngIf="!auto.activo"class="badge badge-danger">desactivo</label>
           </td>
           <td>
-
-            <button class="btn btn-danger mr-1" (click)="pagarAuto( auto, i)"> 
-              <i class="fa fa-money-bill-wave"></i>
-            </button> 
-            
-            <button class="btn btn-info mr-1" [routerLink]="['/auto', auto.id]"> 
-              <i class="fa fa-edit"></i>
-            </button>
-
-            <button class="btn btn-danger" (click)="borrarAuto( auto, i)"> 
-              <i class="fa fa-ban"></i>
-            </button>         
+            <div *ngFor="let usuario of usuarios">
+                <button *ngIf="usuario.rol=='Operador'" class="btn btn-danger mr-1" (click)="pagarAuto( auto, i)"> 
+                  <i class="fa fa-money-bill-wave"></i>
+                </button> 
+            </div>
+            <div *ngFor="let usuario of usuarios">
+                <button *ngIf="usuario.rol=='Operador'" class="btn btn-info mr-1" [routerLink]="['/auto', auto.id]"> 
+                  <i class="fa fa-edit"></i>
+                </button>
+            </div>
+            <div *ngFor="let usuario of usuarios">
+                <button *ngIf="usuario.rol=='Operador'" class="btn btn-danger" (click)="borrarAuto( auto, i)"> 
+                  <i class="fa fa-ban"></i>
+                </button>         
+            </div>            
           </td>
         </ng-container>
       </tr>

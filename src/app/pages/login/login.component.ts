@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+
   login( form: NgForm){
 
     if (form.invalid){return;}
@@ -49,6 +50,7 @@ export class LoginComponent implements OnInit {
         if (this.recordarme){
           localStorage.setItem('email', this.usuario.email);  
         }
+        this.guardarEmail();
         this.router.navigateByUrl('/autos');  
         
 
@@ -63,6 +65,12 @@ export class LoginComponent implements OnInit {
         });
 
       })
+  }
+
+  guardarEmail(){
+
+     console.log(localStorage.getItem('email'));
+     return localStorage.getItem('email'); 
   }
 
 }

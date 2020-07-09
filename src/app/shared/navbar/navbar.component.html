@@ -12,6 +12,9 @@
         <li class="nav-item">
             <a class="nav-link" [routerLink]="'pagados'">Pagados</a>
         </li>
+        <li *ngIf="elUsuario(this.auth.leerCorreo())=='Administrador'"  class="nav-item">
+          <a class="nav-link" [routerLink]="'configuracion/-MB7ZfyDj9cE1pJkkW5g'">Configuracion</a>
+      </li>
 
       <button class="btbtn btn-outline-danger" (click)="salir()">salir</button>
 

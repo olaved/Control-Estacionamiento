@@ -1,9 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AutosService } from 'src/app/services/autos.service';
 import { AutoModel } from 'src/app/models/auto.model';
 import Swal from 'sweetalert2';
 import { CobroModel } from 'src/app/models/cobro.model';
 import { HostListener } from "@angular/core";
+
+import { ConfigService } from 'src/app/services/config.service';
+import { ConfiguracionModel } from 'src/app/models/configuracion.model';
+import { config } from 'process';
+import { ConfigComponent } from '../config/config.component';
+import { RouterLink, Router } from '@angular/router';
+import { observable } from 'rxjs';
+
+import { UsuariosService } from 'src/app/services/usuarios.service';
+import { UsuarioModel } from 'src/app/models/usuario.model';
 
 
 @Component({
@@ -14,15 +24,18 @@ import { HostListener } from "@angular/core";
 export class AutosComponent implements OnInit {
 
   autos: AutoModel[] = [];
-  
-  
-  constructor( private autosService: AutosService ) { }
+  configuracion: ConfiguracionModel[] = [];
+  usuarios: UsuarioModel[] = [];
+
+  constructor( private autosService: AutosService, private configService: ConfigService,
+              private usuariosService: UsuariosService ) { }
 
   filterPost= '';  //
   ngOnInit() {
-  
+  //llamar a todo el arreglo de config, y despues llamar en la posicion let valor = this.configuracion[0].valor_minuto;
+  this.configService.getConfigs().subscribe( resp => this.configuracion = resp);
   this.autosService.getAutos().subscribe( resp => this.autos = resp);
-
+  
 }
 
   /*
@@ -117,14 +130,6 @@ next(key: string) {
 
   }
 
-
-  EncontrarTicket( auto:AutoModel, i:number){
-
-    
-    
-
-  }
-
   MostrarFoto( auto: AutoModel, i:number){
 
     Swal.fire({
@@ -132,8 +137,8 @@ next(key: string) {
       imageWidth: 500,
       imageAlt: 'Foto Auto'
     })
-
   }
+
 
   pagarAuto( auto: AutoModel, i:number ){
  
@@ -155,18 +160,28 @@ next(key: string) {
     let total_meses = mes_actual - mes_ticket;
     let total_dias = dia_actual - dia_ticket;
     let total_minutos = 1440*mes[mes_ticket-1]*(total_meses)+1440*(total_dias)+60*(hora_actual - hora_ticket)+(minutos_actual - minutos_ticket);
-    let monto = 12*total_minutos;
+ 
+    let valor = this.configuracion[0].valor_minuto;
+    let max_dia = this.configuracion[0].cobro_max_dia;
+    let valor_dia = this.configuracion[0].valor_dia;
+    
+    //    let monto = 12*total_minutos;
+    console.log('El valor del monto');
+    console.log(valor);
+    let monto = valor*total_minutos;
+
     //console.log(mes[mes_ticket-1]);
 
-    if((total_minutos>834)&&(total_minutos<=1440)){
-      monto=10000;
+//    if((total_minutos>834)&&(total_minutos<=1440)){
+    if((monto>max_dia)&&(total_minutos<=1440)){
+      monto=max_dia;
     }
 
     if(total_minutos>1440){
-        monto=10000+Math.trunc((total_minutos-1440)/1440)*5000;
+        monto=max_dia+Math.trunc((total_minutos-1440)/1440)*valor_dia;
         let minutos=(total_minutos-1440)%1440;
         if (minutos>0){
-          monto=monto+5000;
+          monto=monto+valor_dia;
         }
 
     }

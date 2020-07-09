@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { ConfigComponent } from './configuracion/config/config.component';
+import { ConfigComponent } from './pages/config/config.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { CodebarComponent } from './pages/codebar/codebar.component';
 import { LoginComponent } from './pages/login/login.component';

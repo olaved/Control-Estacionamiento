@@ -2,9 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { delay } from 'rxjs/operators';
+
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-registro',
@@ -13,15 +18,19 @@ import { delay } from 'rxjs/operators';
 })
 export class RegistroComponent implements OnInit {
 
-  usuario: UsuarioModel;
+  //usuario: UsuarioModel;
   recordarme: false;
+  usuario: UsuarioModel = new UsuarioModel();
 
   constructor( private auth: AuthService,
-               private router: Router ) { }
+               private router: Router,
+               private route: ActivatedRoute,
+               private usuarios: UsuariosService) { }
 
   ngOnInit() {
 
-    this.usuario = new UsuarioModel();
+ //   this.usuario = new UsuarioModel();
+
   
   }
 
@@ -35,7 +44,7 @@ export class RegistroComponent implements OnInit {
       timer: 3000
     });
     Swal.showLoading();
-    
+
     this.auth.nuevoUsuario( this.usuario )
         .subscribe( resp =>{
             console.log(resp);
@@ -51,6 +60,7 @@ export class RegistroComponent implements OnInit {
               showConfirmButton: true
             });
 
+            this.usuarios.crearUsuarioBD( this.usuario).subscribe(); 
             this.router.navigateByUrl('/login');  
 
         }, (err) => {

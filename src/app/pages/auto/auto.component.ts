@@ -78,9 +78,7 @@ export class AutoComponent implements OnInit {
             icon: 'success'
           });
         });
-      }
-      
-
+      }   
   
 }
 }

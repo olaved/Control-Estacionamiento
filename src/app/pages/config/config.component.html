@@ -1,0 +1,98 @@
+<h1>Configuracion</h1>
+
+<div class="row text-right animated fadeIn faster">
+    <div class="col">
+        <button [routerLink]="['/autos']" routerLinkActive="router-link-active"  class="btn btn-danger">
+            <i class="fa fa-arrow-left"></i>
+            Regresar
+        </button>
+    </div>
+</div>
+
+<form (ngSubmit)="guardar(f)" 
+    #f="ngForm">
+
+<!--
+    <div class="form-group mb-5">
+        <label>Codigo</label>
+        <input type="text"
+            class="form-control"
+            disabled="disabled"
+            placeholder="Firebase ID"
+            [(ngModel)]="configuracion.id"
+            name="id"
+            >
+    </div>
+-->
+    <div class="form-group mb-3">
+        <label>Valor por minuto</label>
+        <div>
+        <input type="number"
+            class="form-control"
+            placeholder="Ingresar valor"
+            [(ngModel)]="configuracion.valor_minuto"
+            name="valor_minuto"
+            pattern="([0-z0-9]{2,3}$)"
+            step="1"
+            required
+            #valor_minuto="ngModel"
+            >
+        <div *ngIf="valor_minuto.errors?.required">
+            Este campo es requerido
+        </div>
+        <div *ngIf="valor_minuto.errors?.pattern" style="color: red;">
+            Este campo no tiene formato de patente
+        </div>
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Valor maximo por dia</label>
+        <div>
+        <input type="number"
+            class="form-control"
+            placeholder="Ingresar valor"
+            [(ngModel)]="configuracion.cobro_max_dia"
+            name="cobro_max_dia"
+            pattern="([0-z0-9]{3,5}$)"
+            required
+            #cobro_max_dia="ngModel"
+            >
+        <div *ngIf="cobro_max_dia.errors?.required">
+            Este campo es requerido
+        </div>
+        <div *ngIf="cobro_max_dia.errors?.pattern" style="color: red;">
+            Este campo no tiene formato de patente
+        </div>
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Valor por dia extra</label>
+        <div>
+        <input type="number"
+            class="form-control"
+            placeholder="Ingresar valor"
+            [(ngModel)]="configuracion.valor_dia"
+            name="valor_dia"
+            pattern="([0-z0-9]{3,5}$)"
+            required
+            #valor_dia="ngModel"
+            >
+        <div *ngIf="valor_dia.errors?.required">
+            Este campo es requerido
+        </div>
+        <div *ngIf="valor_dia.errors?.pattern" style="color: red;">
+            Este campo no tiene formato de patente
+        </div>
+        </div>
+    </div>
+
+    <div class="form-group text-center mb-5">
+        <button type="submit" class="btn-primary w-25 p-2 my-3">
+            Guardar
+        </button>
+
+    </div>
+
+</form>

@@ -4,6 +4,9 @@ import { AutoModel } from '../models/auto.model';
 import { map } from 'rxjs/operators';
 import { CobroModel } from '../models/cobro.model';
 
+import { ConfigService } from 'src/app/services/config.service';
+import { ConfiguracionModel } from 'src/app/models/configuracion.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +19,7 @@ export class AutosService {
   constructor( private http: HttpClient) { }
 
   crearAuto( auto: AutoModel){
+    console.log(auto);
     return this.http.post(`${ this.url }/autos.json`, auto).pipe(
       map( (resp:any) =>{
         auto.id= resp.name;
@@ -66,7 +70,9 @@ export class AutosService {
     return autos;
   }
 
-/*   crearPago( auto:AutoModel, monto:number){
+
+
+  /*   crearPago( auto:AutoModel, monto:number){
 
     const autoTemp = {
       ...auto
@@ -149,5 +155,7 @@ export class AutosService {
     }
     return ticketArr;
   }
+
+
 
 }
