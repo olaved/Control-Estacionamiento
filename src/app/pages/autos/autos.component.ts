@@ -14,6 +14,9 @@ import { observable } from 'rxjs';
 
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { UsuarioModel } from 'src/app/models/usuario.model';
+import { AuthService } from 'src/app/services/auth.service';
+
+
 
 
 @Component({
@@ -27,7 +30,11 @@ export class AutosComponent implements OnInit {
   configuracion: ConfiguracionModel[] = [];
   usuarios: UsuarioModel[] = [];
 
-  constructor( private autosService: AutosService, private configService: ConfigService,
+  p: number = 1;
+
+  constructor( private autosService: AutosService,
+               private configService: ConfigService,
+               private auth: AuthService,
               private usuariosService: UsuariosService ) { }
 
   filterPost= '';  //
@@ -35,9 +42,23 @@ export class AutosComponent implements OnInit {
   //llamar a todo el arreglo de config, y despues llamar en la posicion let valor = this.configuracion[0].valor_minuto;
   this.configService.getConfigs().subscribe( resp => this.configuracion = resp);
   this.autosService.getAutos().subscribe( resp => this.autos = resp);
-  
+  this.usuariosService.getUsuarios().subscribe( resp => this.usuarios = resp);
+
 }
 
+
+elUsuario(correo: String){
+  for (let user in this.usuarios){  
+   // console.log(this.usuarios[user].email);
+   // console.log(correo);
+    if (correo==this.usuarios[user].email){
+     // console.log('encontro el correo:' + correo);
+      let rol = this.usuarios[user].rol;
+     // console.log(rol);
+      return rol     
+      }
+    } 
+}
   /*
   lastPressed = 'nothing';
   word = '';
@@ -122,6 +143,11 @@ next(key: string) {
           
           this.autos.splice(i, 1);  //borrar del arreglo
           this.autosService.borrarAuto( auto.id ).subscribe();
+          Swal.fire({
+            icon:'success',
+            html: `<h3>Ticket eliminado satisfactoriamente </h3></br>`,
+            showConfirmButton: true,
+            })
           location.reload();
         }
 
@@ -149,7 +175,7 @@ next(key: string) {
     let minutos_actual=hoy.getMinutes();
     let mes_actual=hoy.getMonth()+1;
     //let hora = hora_actual.toString()+":"+minutos_actual.toString();
-    console.log(hoy);
+    //console.log(hoy);
 
     let mes_ticket = parseInt(auto.fecha.slice(5,7),10);
     let dia_ticket = parseInt(auto.fecha.slice(8,10),10)
@@ -288,5 +314,83 @@ next(key: string) {
 
   }
 
+  obtenerCaja( ){
+
+    let suma = 0;
+
+    for( let car in this.autos){
+
+       if (this.autos[car].activo==true){
+
+        suma = suma + this.DatosCaja( this.autos[car] );
+        let monto = this.DatosCaja( this.autos[car] );
+        //console.log('el monto es:'+ monto+ 'la suma es: ' + suma);
+    
+       }
+    }
+    return suma
+  }
+
+  DatosCaja( auto: AutoModel ){
+ 
+    var hoy = new Date();
+    let dia_actual=hoy.getDate();
+    //let hora = hoy.getHours()+':'+hoy.getMinutes();
+    let hora_actual= hoy.getHours();
+    let minutos_actual=hoy.getMinutes();
+    let mes_actual=hoy.getMonth()+1;
+    //let hora = hora_actual.toString()+":"+minutos_actual.toString();
+    //console.log(hoy);
+
+    let mes_ticket = parseInt(auto.fecha.slice(5,7),10);
+    let dia_ticket = parseInt(auto.fecha.slice(8,10),10)
+    let hora_ticket = parseInt(auto.hora.slice(0,2),10);
+    let minutos_ticket = parseInt(auto.hora.slice(3,5),10);
+    
+    let mes=[31,28,31,30,31,30,31,31,30,31,30,31]
+    let total_meses = mes_actual - mes_ticket;
+    let total_dias = dia_actual - dia_ticket;
+    let total_minutos = 1440*mes[mes_ticket-1]*(total_meses)+1440*(total_dias)+60*(hora_actual - hora_ticket)+(minutos_actual - minutos_ticket);
+ 
+    let valor = this.configuracion[0].valor_minuto;
+    let max_dia = this.configuracion[0].cobro_max_dia;
+    let valor_dia = this.configuracion[0].valor_dia;
+    
+    //    let monto = 12*total_minutos;
+    //console.log('El valor del monto');
+    //console.log(valor);
+    let monto = valor*total_minutos;
+
+    //console.log(mes[mes_ticket-1]);
+
+//    if((total_minutos>834)&&(total_minutos<=1440)){
+    if((monto>max_dia)&&(total_minutos<=1440)){
+      monto=max_dia;
+    }
+
+    if(total_minutos>1440){
+        monto=max_dia+Math.trunc((total_minutos-1440)/1440)*valor_dia;
+        let minutos=(total_minutos-1440)%1440;
+        if (minutos>0){
+          monto=monto+valor_dia;
+        }
+
+    }
+
+    let redondeo=monto;
+
+    while(redondeo>=10){
+      redondeo=redondeo%10;
+    }
+    //console.log(redondeo);
+    if (redondeo>=5){
+      monto=monto+10-redondeo;
+    }
+    else{
+      monto=monto-redondeo;
+    }
+    return monto
+
+  }
   
 }

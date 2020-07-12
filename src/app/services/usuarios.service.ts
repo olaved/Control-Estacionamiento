@@ -38,7 +38,7 @@ export class UsuariosService {
 
   getUsuarios(){
     return this.http.get(`${this.url}/registro.json`).pipe(
-      map( resp=> this.crearArreglo(resp)));
+      map( resp => this.crearArreglo(resp)));
   }
 
   private crearArreglo( usuariosObj: object){
@@ -51,7 +51,20 @@ export class UsuariosService {
       usuarios.push(usuario);
     });
  
-    return usuarios;
+    return usuarios
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ;
   }
 
 

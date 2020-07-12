@@ -61,7 +61,7 @@ export class RegistroComponent implements OnInit {
             });
 
             this.usuarios.crearUsuarioBD( this.usuario).subscribe(); 
-            this.router.navigateByUrl('/login');  
+            this.router.navigateByUrl('/registro');  
 
         }, (err) => {
           //console.log(err.error.error.message);        

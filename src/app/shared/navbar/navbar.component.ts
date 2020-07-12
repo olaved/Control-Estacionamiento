@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
     
    // let correo = this.auth.leerCorreo();
    // console.log('el correo'+': '+correo);
-    this.usuariosService.getUsuarios().subscribe( resp => this.usuarios = resp)
+    this.usuariosService.getUsuarios().subscribe( resp => this.usuarios = resp);
     /*
     this.usuariosService.getUsuarios().subscribe( resp => {this.usuarios = resp
       for (let user in this.usuarios){  
@@ -45,15 +45,15 @@ export class NavbarComponent implements OnInit {
 
   }
 
-
+//Metodo desarrollado para encontrar el usuario logeado, se requiere llamar arreglo de usuarios
   elUsuario(correo: String){
       for (let user in this.usuarios){  
-        console.log(this.usuarios[user].email);
-        console.log(correo);
+        //console.log(this.usuarios[user].email);
+        //console.log(correo);
         if (correo==this.usuarios[user].email){
-          console.log('encontro el correo:' + correo);
+          //console.log('encontro el correo:' + correo);
           let rol = this.usuarios[user].rol;
-          console.log(rol);
+          //console.log(rol);
           return rol     
           }
         } 

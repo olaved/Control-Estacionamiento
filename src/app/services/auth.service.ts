@@ -112,11 +112,11 @@ export class AuthService {
     } else {
       this.email = '';
     }
-    console.log(this.email);
+    //console.log(this.email);
     return this.email;
   }
 
-    estaAutenticado(): boolean {
+  estaAutenticado(): boolean {
 
       if ( this.userToken.length < 2 ) {
         return false;

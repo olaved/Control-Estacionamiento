@@ -12,6 +12,8 @@ import { PagadosComponent } from './pages/pagados/pagados.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {NgxPaginationModule} from 'ngx-pagination';
+
 // RECOMMENDED
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
@@ -46,7 +48,8 @@ import { RegistroComponent } from './pages/registro/registro.component';
     HttpClientModule,
     BsDatepickerModule.forRoot(),
     BrowserAnimationsModule,
-    TimepickerModule.forRoot()
+    TimepickerModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
