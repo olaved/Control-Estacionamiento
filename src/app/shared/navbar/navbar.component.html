@@ -12,13 +12,21 @@
         <li class="nav-item px-3">
             <a class="nav-link" [routerLink]="'pagados'">Pagados</a>
         </li>
-        <li *ngIf="elUsuario(this.auth.leerCorreo())!='Observador'"  class="nav-item">
+        <li class="nav-item px-3">
+          <a class="nav-link" [routerLink]="'clientes'">Clientes</a>
+        </li>
+        <li *ngIf="elUsuario(this.auth.leerCorreo())!='Observador'" class="nav-item px-3">
+          <a class="nav-link" [routerLink]="'/registro'">Registro</a>
+        </li>
+       <!--
+       <li *ngIf="elUsuario(this.auth.leerCorreo())!='Observador'"  class="nav-item">
           <a class="nav-link" [routerLink]="'configuracion/-MB7ZfyDj9cE1pJkkW5g'">Configuracion</a>
       </li>
-      <li *ngIf="elUsuario(this.auth.leerCorreo())!='Observador'" class="nav-item px-3">
-        <a class="nav-link" [routerLink]="'/registro'">Registro</a>
-    </li>
 
+    <li *ngIf="elUsuario(this.auth.leerCorreo())!='Observador'" class="nav-item px-3">
+      <a class="nav-link" [routerLink]="'/reportes'">Reportes</a>
+    </li>
+      -->
       <button class="btbtn btn-outline-danger px-3" (click)="salir()">salir</button>
 
     <!-- <li class="nav-item">

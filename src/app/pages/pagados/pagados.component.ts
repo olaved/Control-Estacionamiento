@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AutosService } from 'src/app/services/autos.service';
 import { AutoModel } from 'src/app/models/auto.model';
 import Swal from 'sweetalert2';
@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 
-
+import * as jsPDF from 'jspdf';
+import { DOCUMENT } from '@angular/common';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class PagadosComponent implements OnInit {
   autos: AutoModel[] = [];
   usuarios: UsuarioModel[] = [];
 
-  p: number = 1;
+  p: number = 1; // iniciar variable crear paginacion
+
 
   constructor( private autosService: AutosService,
                private auth: AuthService,
@@ -42,10 +44,30 @@ export class PagadosComponent implements OnInit {
 
 }
 
+
+
+
+public downloadPDF():void {
+  //let DATA = this.htmlData.nativeElement;
+  let DATA = document.getElementById("htmlData");
+  let CAJA = document.getElementById("caja");
+  let doc = new jsPDF();
+
+
+  doc.text("Listado",15,15);
+  //doc.fromHTML(DATA,15,15);
+  console.log('la caja'+this.obtenerCaja);
+  doc.text("Ingresos Diarios",15,30);
+  doc.fromHTML(CAJA, 15,35);
+
+  doc.save('angular-demo.pdf');
+}
+
+
 elUsuario(correo: String){
   for (let user in this.usuarios){  
-    //console.log(this.usuarios[user].email);
-    //console.log(correo);
+    //console.log('el usuario es: '+this.usuarios[user].email);
+    //console.log('el correo'+correo);
     if (correo==this.usuarios[user].email){
       //console.log('encontro el correo:' + correo);
       let rol = this.usuarios[user].rol;

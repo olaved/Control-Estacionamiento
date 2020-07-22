@@ -23,6 +23,9 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { CodebarComponent } from './pages/codebar/codebar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
+import { ReportesComponent } from './pages/reportes/reportes.component';
+import { ClientesComponent } from './pages/clientes/clientes.component';
+import { ClienteComponent } from './pages/cliente/cliente.component';
 
 
 
@@ -40,6 +43,9 @@ import { RegistroComponent } from './pages/registro/registro.component';
     CodebarComponent,
     LoginComponent,
     RegistroComponent,
+    ReportesComponent,
+    ClientesComponent,
+    ClienteComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,29 @@
+<div>
+    <button class="btn btn-danger btn-block" (click)="reporteDiario()">Download PDF</button>
+  </div>
+  
+  <div class="container">
+    <div class="row" id="htmlData">
+  <table class="table mt-3">
+      <thead class="thead-dark"> 
+        <tr>
+          <!--<th scope="col">#</th>-->
+          <th scope="col">N°</th>
+          <th scope="col">Dia</th>
+          <th scope="col">Ingresos</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr *ngFor="let report of reportes.reverse() | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost}:false; let i =index" >
+          <ng-container>
+           <th scope="row">{{i+1}}</th>
+            <td>{{report.fecha}}</td>
+            <td>{{report.caja}}</td>
+
+          </ng-container>
+        </tr>   
+      </tbody>
+    </table>
+  </div>
+  </div>

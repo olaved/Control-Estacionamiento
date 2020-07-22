@@ -1,6 +1,7 @@
 <h1>Tickets Pagados</h1>
 <hr>
 
+<!--
 <div class="container p-2">
   <div class="row">
     <div class="col-sm text-right">
@@ -9,8 +10,8 @@
           Obtener Ingresos del día
         </button>
     </div>
-     <div class="col-sm text-left">
-          <p class="pt-2 font-weight-bold ">
+     <div class="col-sm text-left" >
+          <p class="pt-2 font-weight-bold" id="caja">
             ${{obtenerCaja()}}
           </p>
      </div>
@@ -20,7 +21,9 @@
 <div class="form-group">
   <input type="text" class="form-control" name="filterPost" placeholder="Search..." [(ngModel)]="filterPost">
 </div>
-
+-->
+<div class="container">
+  <div class="row" id="htmlData">
 <table class="table mt-3">
     <thead class="thead-dark"> 
       <tr>
@@ -64,14 +67,18 @@
             </div>
           </td>
         </ng-container>
-      </tr>
-      <hr>
-      <hr>
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
-      
+      </tr>   
     </tbody>
   </table>
+</div>
+</div>
+<!--
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
 
+<div>
+  <button class="btn btn-danger btn-block" (click)="downloadPDF()">Download PDF</button>
+</div>
+-->
   <!-- 
   <div class="alert alert-warning text-center mt-3">
     <h4 class="alert-headig">No hay registros</h4>

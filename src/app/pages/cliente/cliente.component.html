@@ -1,0 +1,125 @@
+<h1>Ingresar cliente</h1>
+
+<div class="row text-right animated fadeIn faster">
+    <div class="col">
+        <button [routerLink]="['/clientes']" routerLinkActive="router-link-active"  class="btn btn-danger">
+            <i class="fa fa-arrow-left"></i>
+            Regresar
+        </button>
+    </div>
+</div>
+
+<form (ngSubmit)="guardar(f)" #f="ngForm">
+
+    <!--
+    <div class="form-group mb-5">
+        <label>Codigo</label>
+        <input type="text" class="form-control" disabled="disabled" placeholder="Firebase ID" [(ngModel)]="auto.id" name="id">
+    </div>
+-->
+
+    <div class="form-group mb-3">
+        <label>Nombre</label>
+        <input type="text" class="form-control" #nombre="ngModel" placeholder="Pedro" minlength="2" maxlength="15" [(ngModel)]="cliente.nombre" name="nombre" required pattern="([A-Za-zz]{2,15}$)">
+        <div *ngIf="nombre.errors?.required">
+            Este campo es requerido
+        </div>
+        <div *ngIf="nombre.errors?.pattern" style="color: red;">
+            Este campo no tiene formato de nombre
+        </div>
+
+    </div>
+
+
+    <div class="form-group mb-3">
+        <label>Apellido Paterno</label>
+        <input class="form-control" #apellido_paterno="ngModel" placeholder="Gonzalez" minlength="2" maxlength="15" [(ngModel)]="cliente.apellido_paterno" name="apellido_paterno" pattern="([A-Za-zz]{2,15}$)" required>
+        <div *ngIf="apellido_paterno.errors?.required">
+            Este campo es requerido
+        </div>
+        <div *ngIf="apellido_paterno.errors?.pattern" style="color: red;">
+            Este campo no tiene formato de apellido
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Apellido Materno</label>
+        <input class="form-control" #apellido_materno="ngModel" placeholder="Perez" minlength="2" maxlength="15" [(ngModel)]="cliente.apellido_materno" name="apellido_materno" pattern="([A-Za-zz]{2,15}$)" required>
+        <div *ngIf="apellido_materno.errors?.required">
+            Este campo es requerido
+        </div>
+        <div *ngIf="apellido_materno.errors?.pattern" style="color: red;">
+            Este campo no tiene formato de apellido
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>run</label>
+        <input class="form-control" #run="ngModel" type="text" placeholder="176304205" minlength="7" maxlength="9" [(ngModel)]="cliente.run" name="run" pattern="([A-Za-z0-9]{8,9}$)" required>
+        <div *ngIf="run.errors?.required">
+            Este campo es requerido
+        </div>
+        <div *ngIf="run.errors?.pattern" style="color: red;">
+            Este campo no tiene formato de run
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>telefono</label>
+        <input class="form-control" #telefono="ngModel" type="number" placeholder="56981354270" minlength="11" maxlength="12" [(ngModel)]="cliente.telefono" name="telefono" pattern="([A-Za-z0-9]{12,14}$)">
+        <div *ngIf="telefono.errors?.required">
+            Este campo es requerido
+        </div>
+        <div *ngIf="telefono.errors?.pattern" style="color: red;">
+            Este campo no tiene formato de telefono
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Fecha Nacimiento</label>
+        <input class="form-control" #fecha_nacimiento="ngModel" placeholder="01-01-2020" bsDatepicker [(ngModel)]="cliente.fecha_nacimiento" name="fecha_naciento" [bsConfig]=" { dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-blue', isAnimated: true} ">
+    </div>
+
+    <div class="form-group mb-3 ">
+        <label>Email</label>
+        <input class="form-control" #email="ngModel" type="email" placeholder="asd@gmail.com " minlength="7" maxlength="25" [(ngModel)]="cliente.email " name="email">
+        <div *ngIf="email.errors?.required">
+            Este campo es requerido
+        </div>
+        <div *ngIf="email.errors?.pattern" style="color: red;">
+            Este campo no tiene formato de email
+        </div>
+    </div>
+
+    <div class="form-group mb-3 ">
+        <label>Patente auto</label>
+        <input class="form-control" #patente_auto="ngModel" type="text" placeholder="FLMT52" minlength="5" maxlength="7" [(ngModel)]="cliente.patente_auto" name="patente" pattern="([A-Za-z0-9]{5,6}$)">
+        <div *ngIf="patente_auto.errors?.required">
+            Este campo es requerido
+        </div>
+        <div *ngIf="patente_auto.errors?.pattern" style="color: red;">
+            Este campo no tiene formato de patente
+        </div>
+    </div>
+
+    <div class="form-group mb-3 ">
+        <label>cobro mensual</label>
+        <input class="form-control" #cobro_mensual="ngModel" type="number" placeholder="$30.000" minlength="5" maxlength="6" [(ngModel)]="cliente.cobro_mensual" name="cobro_mensual" pattern="([z0-9]{4,6}$)">
+        <div *ngIf="cobro_mensual.errors?.required">
+            Este campo es requerido
+        </div>
+        <div *ngIf="cobro_mensual.errors?.pattern" style="color: red;">
+            Este campo no tiene formato de dinero
+        </div>
+    </div>
+
+   <hr>
+
+    <div class="form-group text-center mb-5 ">
+        <button type="submit " class="btn-primary w-25 p-1 ">
+            Guardar
+        </button>
+
+    </div>
+
+</form>

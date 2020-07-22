@@ -18,7 +18,7 @@ import { resolve } from 'url';
 export class LoginComponent implements OnInit {
 
   usuario: UsuarioModel = new UsuarioModel();
-  recordarme = false;
+  recordarme = true;
 
   constructor( private auth:AuthService,
                private router: Router ) { }
@@ -47,9 +47,10 @@ export class LoginComponent implements OnInit {
     this.auth.login( this.usuario)
       .subscribe( resp => {
         console.log(resp);
-        if (this.recordarme){
-          localStorage.setItem('email', this.usuario.email);  
-        }
+        //if (this.recordarme){
+        //  localStorage.setItem('email', this.usuario.email);  
+        //}
+        localStorage.setItem('email', this.usuario.email);  
         this.guardarEmail();
         this.router.navigateByUrl('/autos');  
         
@@ -63,13 +64,13 @@ export class LoginComponent implements OnInit {
           text: err.error.error.message,
           allowOutsideClick: false,
         });
-
+        
       })
   }
 
   guardarEmail(){
 
-     console.log(localStorage.getItem('email'));
+     //console.log(localStorage.getItem('email'));
      return localStorage.getItem('email'); 
   }
 

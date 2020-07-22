@@ -49,12 +49,12 @@ export class AutosComponent implements OnInit {
 
 elUsuario(correo: String){
   for (let user in this.usuarios){  
-   // console.log(this.usuarios[user].email);
-   // console.log(correo);
+    //console.log(this.usuarios[user].email);
+    // console.log(correo);
     if (correo==this.usuarios[user].email){
-     // console.log('encontro el correo:' + correo);
       let rol = this.usuarios[user].rol;
-     // console.log(rol);
+      //console.log('encontro el correo:' + correo+'y el rol es: '+rol);
+      // console.log(rol);
       return rol     
       }
     } 

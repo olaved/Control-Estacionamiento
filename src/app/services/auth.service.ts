@@ -112,7 +112,7 @@ export class AuthService {
     } else {
       this.email = '';
     }
-    //console.log(this.email);
+    //console.log('leer correo leercorreo()es:  '+this.email);
     return this.email;
   }
 
@@ -130,7 +130,7 @@ export class AuthService {
         return true;
       } else {
         return false;
-      }
+      } 
     }
 
 }
