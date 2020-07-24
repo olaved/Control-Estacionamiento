@@ -1,17 +1,24 @@
-<h1>Listado de Tickets</h1>
-<hr>
-<div *ngIf="elUsuario(this.auth.leerCorreo())!='Observador'"> 
-  <div class="row">
-      <div class="col text-right">
-          <button [routerLink]="['/auto/kldool']" routerLinkActive="router-link-active" 
-              class="btn btn-primary mb-2">
-              <i class="fa fa-plus"></i>
-              Agregar Ticket
-          </button>
-      </div>
+<div class="row">
+  <div class="col-sm-8">
+      <h1>Listado de Tickets</h1>
   </div>
+  <div class="col-sm-4">
+      <div class="animated fadeIn slow">
+        <div *ngIf="elUsuario(this.auth.leerCorreo())!='Observador'"> 
+          <div class="row">
+              <div class="col text-right">
+                  <button [routerLink]="['/auto/kldool']" routerLinkActive="router-link-active" 
+                      class="btn btn-primary mb-2">
+                      <i class="fa fa-plus"></i>
+                      Agregar Ticket
+                  </button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
-
+<hr>
 <!--
 <div class="container p-2">
   <div class="row">
