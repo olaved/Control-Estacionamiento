@@ -1,15 +1,16 @@
 <h1>Listado de Clientes</h1>
 <hr>
 
-<div class="row">
-    <div class="col text-right">
-        <button [routerLink]="['/cliente/kldool']" routerLinkActive="router-link-active" class="btn btn-primary mb-2">
-            <i class="fa fa-plus"></i>
-            Agregar Cliente
-        </button>
+<div *ngIf="elUsuario(this.auth.leerCorreo())!='Observador'">
+    <div class="row">
+        <div class="col text-right">
+            <button [routerLink]="['/cliente/kldool']" routerLinkActive="router-link-active" class="btn btn-primary mb-2">
+                <i class="fa fa-plus"></i>
+                Agregar Cliente
+            </button>
+        </div>
     </div>
 </div>
-
 
 <table class="table mt-3">
     <thead class="thead-dark">
