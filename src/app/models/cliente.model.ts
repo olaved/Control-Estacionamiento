@@ -5,13 +5,13 @@ export class ClienteModel{
     id:string;
     nombre:string;
     apellido_paterno:string;
-    apellido_materno:boolean;
+    apellido_materno:string;
     run: string;
     fecha_nacimiento: string;
     cobro_mensual: number;
     telefono: number;
-    email: Date;
-    patente_auto: number;
+    email: string;
+    patente_auto: string;
 
     constructor(){
     }

@@ -1,7 +1,7 @@
 <div class="limiter animated fadeInRight">
     <div class="container-login100">
         <div class="wrap-login100 p-t-50 p-b-90">
-            <form (ngSubmit)="onSubmit( f )" 
+            <form (ngSubmit)="guardar( f )" 
                 #f="ngForm"
                 class="login100-form validate-form flex-sb flex-w">
 
@@ -17,6 +17,8 @@
                            name="email" 
                            [(ngModel)]="usuario.email"
                            #email="ngModel"
+                           minlength="5"
+                           maxlength="25"
                            required
                            email
                            placeholder="Email">
@@ -32,6 +34,8 @@
                            name="nombre" 
                            [(ngModel)]="usuario.nombre"
                            #nombre="ngModel"
+                           minlength="2"
+                           maxlength="20"
                            required
                            placeholder="Nombre">
 

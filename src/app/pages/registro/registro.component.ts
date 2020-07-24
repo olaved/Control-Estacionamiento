@@ -34,7 +34,7 @@ export class RegistroComponent implements OnInit {
   
   }
 
-  onSubmit( form: NgForm) {
+  guardar( form: NgForm) {
 
     if (form.invalid){return;}
    

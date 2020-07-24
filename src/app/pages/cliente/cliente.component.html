@@ -55,7 +55,7 @@
 
     <div class="form-group mb-3">
         <label>run</label>
-        <input class="form-control" #run="ngModel" type="text" placeholder="176304205" minlength="7" maxlength="9" [(ngModel)]="cliente.run" name="run" pattern="([A-Za-z0-9]{8,9}$)" required>
+        <input class="form-control" #run="ngModel" type="text" placeholder="176304205" minlength="7" maxlength="10" [(ngModel)]="cliente.run" name="run" pattern="([A-Za-z0-9]{8,9}$)" required>
         <div *ngIf="run.errors?.required">
             Este campo es requerido
         </div>
@@ -66,7 +66,7 @@
 
     <div class="form-group mb-3">
         <label>telefono</label>
-        <input class="form-control" #telefono="ngModel" type="number" placeholder="56981354270" minlength="11" maxlength="12" [(ngModel)]="cliente.telefono" name="telefono" pattern="([A-Za-z0-9]{12,14}$)">
+        <input class="form-control" #telefono="ngModel" type="number" placeholder="56981354270" minlength="8" maxlength="12" [(ngModel)]="cliente.telefono" name="telefono" pattern="([0-z0-9]{8,12}$)">
         <div *ngIf="telefono.errors?.required">
             Este campo es requerido
         </div>
