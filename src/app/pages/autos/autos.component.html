@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-8">
-      <h1>Listado de Tickets</h1>
+      <h1>Listado de Tickets Activos</h1>
   </div>
   <div class="col-sm-4">
       <div class="animated fadeIn slow">
@@ -51,24 +51,26 @@
         <th scope="col">Foto</th>
         <th scope="col">Fecha</th>
         <th scope="col">Hora</th>
-        <th scope="col">Estado</th>
+      <!-- <th scope="col">Estado</th>--> 
         <th scope="col">Herramientas</th>
       </tr>
     </thead>
     <tbody>
      
-      <tr *ngFor="let auto of autos | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost} | paginate: { itemsPerPage: 100, currentPage: p } :false; let i =index">
-        <ng-container *ngIf="auto.activo==true">
+      <tr *ngFor="let auto of autos | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost}; let i =index">
+<!--  <tr *ngFor="let auto of autos | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost} | paginate: { itemsPerPage: 100, currentPage: p } :false; let i =index">
+-->       
+      <ng-container *ngIf="auto.activo==true">
       <!--  <th scope="row">{{i+1}}</th>-->
         <td>{{auto.codigo}}</td>
         <td>{{auto.patente.toUpperCase().replace('-','')}}</td>
         <td><img [src]="auto.foto" width="100" heigth="50" alt="" (click)="MostrarFoto( auto, i)" ></td>
         <td>{{auto.fecha.slice(0,10)}}</td>
         <td>{{auto.hora.slice(0,5)}}</td>
-          <td>
+        <!--  <td>
             <label *ngIf="auto.activo"class="badge badge-success">activo</label>
             <label *ngIf="!auto.activo"class="badge badge-danger">desactivo</label>
-          </td>
+          </td>-->
           <td>
               <div *ngIf="elUsuario(this.auth.leerCorreo())!='Observador'">
                 <button class="btn btn-danger mr-1" (click)="pagarAuto( auto, i)"> 

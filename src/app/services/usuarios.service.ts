@@ -7,6 +7,7 @@ import { ConfigService } from 'src/app/services/config.service';
 import { ConfiguracionModel } from 'src/app/models/configuracion.model';
 import { UsuarioModel } from '../models/usuario.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +15,9 @@ export class UsuariosService {
 
   private url='https://raspberry-bf5f5.firebaseio.com';
   autos: any;
+  private urlAuth ='https://identitytoolkit.googleapis.com/v1/accounts:';
+  private apikey = 'AIzaSyDEPVqRpAIVt6EsKX4Exono3yKenE2gIOE';
+
 
   constructor( private http: HttpClient) { }
 
@@ -51,21 +55,16 @@ export class UsuariosService {
       usuarios.push(usuario);
     });
  
-    return usuarios
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ;
+    return usuarios;
   }
+
+  borrarUsuario( id:string ){
+
+    return this.http.delete(`${this.urlAuth}delete?key=${this.apikey}/uid=AawgqrBwOKMyUL1gqsedFEmLT7Q2` );
+    //return this.http.delete(`${this.urlAuth}signUp?key=${this.apikey}/json,AawgqrBwOKMyUL1gqsedFEmLT7Q2`);
+   // return this.http.delete(`${ this.url }/registro/${ id }.json`);
+
+   }
 
 
 }

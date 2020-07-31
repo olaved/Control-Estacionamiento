@@ -26,6 +26,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { ReportesComponent } from './pages/reportes/reportes.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { ClienteComponent } from './pages/cliente/cliente.component';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 
 
 
@@ -46,6 +47,7 @@ import { ClienteComponent } from './pages/cliente/cliente.component';
     ReportesComponent,
     ClientesComponent,
     ClienteComponent,
+    UsuariosComponent,
   ],
   imports: [
     BrowserModule,

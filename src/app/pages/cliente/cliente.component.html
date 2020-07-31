@@ -54,7 +54,7 @@
     </div>
 
     <div class="form-group mb-3">
-        <label>run</label>
+        <label>RUN</label>
         <input class="form-control" #run="ngModel" type="text" placeholder="176304205" minlength="7" maxlength="10" [(ngModel)]="cliente.run" name="run" pattern="([A-Za-z0-9]{8,9}$)" required>
         <div *ngIf="run.errors?.required">
             Este campo es requerido
@@ -65,7 +65,7 @@
     </div>
 
     <div class="form-group mb-3">
-        <label>telefono</label>
+        <label>Telefono</label>
         <input class="form-control" #telefono="ngModel" type="number" placeholder="56981354270" minlength="8" maxlength="12" [(ngModel)]="cliente.telefono" name="telefono" pattern="([0-z0-9]{8,12}$)">
         <div *ngIf="telefono.errors?.required">
             Este campo es requerido
@@ -103,7 +103,7 @@
     </div>
 
     <div class="form-group mb-3 ">
-        <label>cobro mensual</label>
+        <label>Cobro mensual</label>
         <input class="form-control" #cobro_mensual="ngModel" type="number" placeholder="$30.000" minlength="5" maxlength="6" [(ngModel)]="cliente.cobro_mensual" name="cobro_mensual" pattern="([z0-9]{4,6}$)">
         <div *ngIf="cobro_mensual.errors?.required">
             Este campo es requerido

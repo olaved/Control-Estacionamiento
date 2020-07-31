@@ -16,7 +16,7 @@
           <a class="nav-link" [routerLink]="'clientes'">Clientes</a>
         </li>
         <li *ngIf="elUsuario(this.auth.leerCorreo())!='Observador'" class="nav-item px-3">
-          <a class="nav-link" [routerLink]="'/registro'">Registro</a>
+          <a class="nav-link" [routerLink]="'/usuarios'">Usuarios</a>
         </li>
        <!--
        <li *ngIf="elUsuario(this.auth.leerCorreo())!='Observador'"  class="nav-item">

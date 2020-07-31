@@ -36,15 +36,16 @@
         <th scope="col">Hora Salida</th>
         <th scope="col">Minutos</th>
         <th scope="col">Monto</th>
-        <th scope="col">Estado</th>
+      <!--  <th scope="col">Estado</th>-->
         <th scope="col">Foto</th> 
         <th scope="col">Herramientas</th>
       </tr>
     </thead>
     <tbody>
       
-      <tr *ngFor="let auto of autos.reverse() | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost} | paginate: { itemsPerPage: 100, currentPage: p } :false; let i =index" >
-        <ng-container *ngIf="auto.activo==false">
+      <tr *ngFor="let auto of autos.reverse() | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost}; let i =index" >
+<!--      <tr *ngFor="let auto of autos.reverse() | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost} | paginate: { itemsPerPage: 100, currentPage: p } :false; let i =index" >
+-->   <ng-container *ngIf="auto.activo==false">
          <!-- <th scope="row">{{i+1}}</th>-->
           <td>{{auto.codigo}}</td>
           <td >{{auto.patente.toUpperCase().replace('-','')}}</td>
@@ -54,10 +55,10 @@
           <td>{{auto.fecha_salida|date:"HH:mm"}}</td>
           <td>{{auto.minutos}}</td>
           <td>${{auto.monto}}</td>
-          <td> 
+      <!--    <td> 
             <label *ngIf="auto.activo" class="badge badge-success">activo</label>
             <label *ngIf="!auto.activo"class="badge badge-danger">desactivo</label>
-          </td>
+        </td>-->
           <td><img [src]="auto.foto" width="100" heigth="50" alt="" (click)="MostrarFoto( auto, i)" ></td>
           <td>
             <div *ngIf="elUsuario(this.auth.leerCorreo())!='Observador'">
