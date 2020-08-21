@@ -15,6 +15,7 @@ import { ReportesComponent } from './pages/reportes/reportes.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { ClienteComponent } from './pages/cliente/cliente.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { InicioComponent } from './pages/inicio/inicio.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
     { path: 'clientes', component: ClientesComponent, canActivate: [AuthGuard]},
     { path: 'cliente/:id', component: ClienteComponent, canActivate: [AuthGuard]},
     { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuard]},
-    { path: '**', pathMatch: 'full', redirectTo: 'autos' }
+    { path: 'inicio', component: InicioComponent},
+    { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
 ];
 
 

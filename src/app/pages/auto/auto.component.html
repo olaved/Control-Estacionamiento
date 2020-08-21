@@ -61,14 +61,27 @@
             <label>Fecha</label>
             <input
               class="form-control"
-              placeholder="01-01-2020"
+              placeholder="2020-01-01"
               bsDatepicker
               [(ngModel)]="auto.fecha"
               name="fecha"
-              [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-blue', isAnimated: true}"
+              [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-blue', isAnimated: true}"
               required>
         </div>
-
+        
+        <div *ngIf="auto.activo==false">
+            <div class="form-group mb-3">
+                <label>Fecha Salida</label>
+                <input
+                class="form-control"
+                placeholder="2020-01-01"
+                bsDatepicker
+                [(ngModel)]="auto.fecha_salida"
+                name="fecha_salida"
+                [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-blue', isAnimated: true}"
+                >
+            </div>
+        </div>
  <!-- <div class="form-group">
         <label>Hora</label>
         <div>
@@ -104,7 +117,7 @@
           name="hora"
           [(ngModel)]="auto.hora"
           required />
-      </div>
+    </div>
 
   <!--  <p>Or if you prefer, {{today | date:'HH:mm:ss'}}</p>  -->
 

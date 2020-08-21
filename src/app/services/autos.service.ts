@@ -70,6 +70,23 @@ export class AutosService {
     return autos;
   }
 
+  getAutosreverse(){
+    return this.http.get(`${this.url}/autos.json`).pipe(
+      map( resp=> this.crearArregloreverse(resp)));
+  }
+
+  private crearArregloreverse( autosObj: object){
+    
+    const autos: AutoModel[] = [];
+    console.log( autosObj);
+    Object.keys( autosObj ).forEach( key =>{
+      const auto: AutoModel = autosObj[key];
+      auto.id = key;
+      autos.push(auto);
+    });
+ 
+    return autos.reverse();
+  }
 
 
   /*   crearPago( auto:AutoModel, monto:number){
@@ -137,6 +154,12 @@ export class AutosService {
     delete autoTemp.id;
     
     return this.http.put(`${this.url}/autos/${auto.id}/pagado.json`, pagado);
+  }
+
+ 
+  codigoSalida( auto: AutoModel){
+
+    return this.http.put(`${ this.url }/codigos/${auto.codigo}.json`, true);
   }
 
   buscarTicket( termino: string):AutoModel[]{

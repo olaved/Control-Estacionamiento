@@ -186,6 +186,20 @@
     display: block;
   }
   
+  .login200-form-title {
+    font-family: Ubuntu-Bold;
+    font-size: 40px;
+    color: #8cad6e;
+    font-style: italic;
+    text-decoration: solid;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
+  
+    width: 100%;
+    display: block;
+  }
+
   .login100-form-title2 {
     font-family: Ubuntu-Bold;
     font-size: 25px;

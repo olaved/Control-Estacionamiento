@@ -109,18 +109,21 @@ next(key: string) {
        function reverseString(str) {
        return str.split('').reverse().join('');
        }
-       //console.log('contiene el codigo');
+       console.log('contiene el codigo');
        console.log(this.word);
        let code = this.word.replace("Enter","");
-       console.log(code);
-       let codeinvertido = reverseString(code);
-       codeinvertido = codeinvertido.slice(0,12);     
-       code = reverseString(codeinvertido);
-       //console.log(code);
+       console.log('el code'+code);
+       //let codeinvertido = reverseString(code);
+       //codeinvertido = codeinvertido.slice(0,12);
+       //code = reverseString(code);
+       let code2 = 'B' + code;     
+       //console.log('code invertido'+codeinvertido);
+       //console.log('code'+code);
+       console.log('code mas B'+code2);
        this.word='';
        for (let i in this.autos){
-          if (code == this.autos[i].codigo){
-            //console.log("Encontro el codigo");
+          if (code2 == this.autos[i].codigo){
+            console.log("Encontro el codigo");
             if( this.autos[i].pagado != true){
               this.pagarAuto(this.autos[i], 0 );
             }
@@ -146,7 +149,7 @@ next(key: string) {
           Swal.fire({
             icon:'success',
             html: `<h3>Ticket eliminado satisfactoriamente </h3></br>`,
-            showConfirmButton: true,
+            showConfirmButton: false
             })
           location.reload();
         }
@@ -190,7 +193,9 @@ next(key: string) {
     let valor = this.configuracion[0].valor_minuto;
     let max_dia = this.configuracion[0].cobro_max_dia;
     let valor_dia = this.configuracion[0].valor_dia;
-    
+
+    let codigo = auto.codigo;
+    console.log('el codigo es: '+codigo)    
     //    let monto = 12*total_minutos;
     console.log('El valor del monto');
     console.log(valor);
@@ -306,6 +311,7 @@ next(key: string) {
             this.autosService.horaSalida( auto , hoy).subscribe();
             this.autosService.cambioEstado( auto , estado ).subscribe();
             this.autosService.ticketPagado( auto , pagado ).subscribe();
+            this.autosService.codigoSalida( auto ).subscribe();
         }
         }
 

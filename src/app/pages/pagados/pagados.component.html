@@ -17,11 +17,11 @@
      </div>
   </div>
 </div>
-
+-->
 <div class="form-group">
   <input type="text" class="form-control" name="filterPost" placeholder="Search..." [(ngModel)]="filterPost">
 </div>
--->
+
 <div class="container">
   <div class="row" id="htmlData">
 <table class="table mt-3">
@@ -43,9 +43,9 @@
     </thead>
     <tbody>
       
-      <tr *ngFor="let auto of autos.reverse() | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost}; let i =index" >
-<!--      <tr *ngFor="let auto of autos.reverse() | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost} | paginate: { itemsPerPage: 100, currentPage: p } :false; let i =index" >
--->   <ng-container *ngIf="auto.activo==false">
+<!--     <tr *ngFor="let auto of autos.reverse() | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost}; let i =index" >
+--><tr *ngFor="let auto of autos.reverse() | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost} | paginate: { itemsPerPage: 100, currentPage: p } :false; let i =index" >
+   <ng-container *ngIf="auto.activo==false">
          <!-- <th scope="row">{{i+1}}</th>-->
           <td>{{auto.codigo}}</td>
           <td >{{auto.patente.toUpperCase().replace('-','')}}</td>
@@ -73,9 +73,9 @@
   </table>
 </div>
 </div>
-<!--
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
 
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<!--
 <div>
   <button class="btn btn-danger btn-block" (click)="downloadPDF()">Download PDF</button>
 </div>
