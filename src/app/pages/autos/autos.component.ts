@@ -143,20 +143,18 @@ next(key: string) {
       showCancelButton: true
     }).then( resp=> {
         if ( resp.value){
-          
-          this.autos.splice(i, 1);  //borrar del arreglo
+
+          this.autos.splice( i, 1);  //borrar del arreglo
           this.autosService.borrarAuto( auto.id ).subscribe();
+
           Swal.fire({
             icon:'success',
             html: `<h3>Ticket eliminado satisfactoriamente </h3></br>`,
-            showConfirmButton: false
-            })
-          location.reload();
+            showConfirmButton: true
+            });
         }
 
-    })
-
-
+    });
   }
 
   MostrarFoto( auto: AutoModel, i:number){

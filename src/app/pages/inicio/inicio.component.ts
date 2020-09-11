@@ -44,9 +44,10 @@ export class InicioComponent implements OnInit {
       //console.log(this.autos[i].codigo);
       //console.log(this.autos[i].patente);
       //console.log(this.autos[i].hora);
-      let codigox2 = 'B'+codigox; 
-      if((((this.autos[i].patente==codigox)||(this.autos[i].codigo==codigox))&&(this.autos[i].monto==null))
-          ||(((this.autos[i].codigo==codigox2))&&(this.autos[i].monto==null))){
+      let codigox2 = 'B'+codigox;
+      let code = this.autos[i].codigo;
+      if((((this.autos[i].patente.toUpperCase()==codigox.toUpperCase())||(code.toUpperCase()==codigox.slice(0,13).toUpperCase()))&&(this.autos[i].monto==null))
+          ||(((this.autos[i].codigo.toUpperCase()==codigox2.slice(0,13).toUpperCase()))&&(this.autos[i].monto==null))){
       
         console.log("encontro ticket");
         var hoy = new Date();

@@ -55,7 +55,7 @@
 
     <div class="form-group mb-3">
         <label>RUN</label>
-        <input class="form-control" #run="ngModel" type="text" placeholder="176304205" minlength="7" maxlength="10" [(ngModel)]="cliente.run" name="run" pattern="verificarRUN()=='false'" required>
+        <input class="form-control" #run="ngModel" type="text" placeholder="176304205" minlength="7" maxlength="10" [(ngModel)]="cliente.run" name="run"  required>
 
         <div *ngIf="run.errors?.pattern" style="color: red;">
             Este campo no tiene formato de run
@@ -118,9 +118,5 @@
             Guardar
         </button>
     </div>
-    <div class="form-group text-center mb-5 ">
-        <button class="btn btn-danger mr-1" (click)="verificarRUN('175606904')"> 
-            <i class="fa fa-money-bill-wave"></i>
-          </button> 
-    </div>
+
 </form>
