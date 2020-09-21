@@ -3,8 +3,8 @@
   </div>
   
   <div class="container">
-    <div class="row" id="htmlData">
-  <table class="table mt-3">
+    <div class="row" >
+  <table class="table mt-3" id="htmlData" #htmlData>
       <thead class="thead-dark"> 
         <tr>
           <!--<th scope="col">#</th>-->
@@ -15,7 +15,7 @@
       </thead>
       <tbody>
         
-        <tr *ngFor="let report of reportes.reverse() | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost}:false; let i =index" >
+        <tr *ngFor="let report of reportes.reverse(); let i =index" >
           <ng-container>
            <th scope="row">{{i+1}}</th>
             <td>{{report.fecha}}</td>

@@ -9,8 +9,15 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 
 import * as jsPDF from 'jspdf';
-import { DOCUMENT } from '@angular/common';
+import 'jspdf-autotable'
 
+import { DOCUMENT } from '@angular/common';
+import { Pipe, PipeTransform } from '@angular/core';
+
+
+@Pipe({
+  name: 'filtercount'
+})
 
 @Component({
   selector: 'app-pagados',
@@ -21,9 +28,10 @@ export class PagadosComponent implements OnInit {
 
   autos: AutoModel[] = [];
   usuarios: UsuarioModel[] = [];
-
+  
   p: number = 1; // iniciar variable crear paginacion
 
+  public total;
 
   constructor( private autosService: AutosService,
                private auth: AuthService,
@@ -41,26 +49,44 @@ export class PagadosComponent implements OnInit {
   
   this.autosService.getAutos().subscribe( resp => this.autos = resp);
   this.usuariosService.getUsuarios().subscribe( resp => this.usuarios = resp);
-
+  this.total= this.autos.reduce((prev,next)=>prev+next.monto+1,0);
+  console.log('el total= '+ this.total );
+  
 }
 
+
+
+public totalx(){
+
+      //Calculamos el TOTAL 
+      let suma = 0;
+      for (let car in this.autos){
+          if(this.autos[car].monto!=null){
+            suma = suma + this.autos[car].monto
+            console.log(suma);
+          }
+      }
+        return suma;
+}
 
 
 
 public downloadPDF():void {
   //let DATA = this.htmlData.nativeElement;
   let DATA = document.getElementById("htmlData");
-  let CAJA = document.getElementById("caja");
+  //let CAJA = document.getElementById("caja");
   let doc = new jsPDF();
 
 
   doc.text("Listado",15,15);
   //doc.fromHTML(DATA,15,15);
-  console.log('la caja'+this.obtenerCaja);
-  doc.text("Ingresos Diarios",15,30);
-  doc.fromHTML(CAJA, 15,35);
+  //console.log('la caja'+this.obtenerCaja);
+  //doc.text("Ingresos Diarios",15,30);
+  //sdoc.fromHTML(CAJA, 15,35);
+  doc.autoTable({ html: '#htmlData', columns: [[ 'Codigo' ],['Patente'],['Fecha Entrada'],['Fecha Salida'],['Hora Entrada'],['Hora Salida'],['Minutos'],['Monto']]  })
+  doc.output('dataurlnewwindow');
 
-  doc.save('angular-demo.pdf');
+  //doc.save('angular-demo.pdf');
 }
 
 
@@ -149,4 +175,23 @@ obtenerCaja(  ){
   return suma
 }
 
+public downloadPDFX():void {
+  //let DATA = this.htmlData.nativeElement;
+  let DATA = document.getElementById("htmlData");
+  let CAJA = document.getElementById("caja");
+  let doc = new jsPDF();
+
+
+  doc.text("Listado",15,15);
+  //doc.fromHTML(DATA.innerHtml,15,15);
+  console.log('la caja'+this.obtenerCaja);
+  doc.text("Ingresos Diarios",15,30);
+  doc.fromHTML(CAJA, 15,35);
+  
+  //doc.autoTable({ html: '#htmlData' })
+
+  doc.output('dataurlnewwindow');
+
+  //doc.save('angular-demo.pdf');
+}
 }

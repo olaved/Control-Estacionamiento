@@ -19,7 +19,7 @@
     </div>
 </div>
 <hr>
-<!--
+
 <div class="container p-2">
   <div class="row">
     <div class="col-sm text-right">
@@ -35,7 +35,7 @@
      </div>
   </div>
 </div>
--->
+
 <div class="form-group">
   <input type="text" class="form-control" name="filterPost" placeholder="Search..." [(ngModel)]="filterPost">
 </div>
@@ -58,9 +58,9 @@
     <tbody>
      
 <!--      <tr *ngFor="let auto of autos | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost}; let i =index"> 
--->  <tr *ngFor="let auto of autos | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost} | paginate: { itemsPerPage: 100, currentPage: p } :false; let i =index">
+-->      <tr *ngFor="let auto of autos | paginate: { itemsPerPage: 100, currentPage: p } | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost}; let i =index">
        
-      <ng-container *ngIf="auto.activo==true">
+        <ng-container *ngIf="auto.activo==true">
       <!--  <th scope="row">{{i+1}}</th>-->
         <td>{{auto.codigo}}</td>
         <td>{{auto.patente.toUpperCase().replace('-','')}}</td>
@@ -79,19 +79,16 @@
                 <button class="btn btn-info mr-1" [routerLink]="['/auto', auto.id]"> 
                   <i class="fa fa-edit"></i>
                 </button>
-                <button class="btn btn-danger" (click)="borrarAuto( auto, i)"> 
+                <button class="btn btn-danger" (click)="borrarAuto2( auto, i)"> 
                   <i class="fa fa-ban"></i>
                 </button>
               </div>        
            </td>
         </ng-container>
       </tr>
-      <hr>
-      <hr>
-
       
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
-      
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        
     </tbody>
 </table>
 

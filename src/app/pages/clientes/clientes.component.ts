@@ -70,16 +70,14 @@ elUsuario(correo: String){
           
           this.clientes.splice(i, 1);  //borrar del arreglo
           this.clientesService.borrarCliente( cliente.id ).subscribe();
+          
           Swal.fire({
             icon:'success',
             html: `<h3>Cliente eliminado satisfactoriamente </h3></br>`,
             showConfirmButton: true,
             })
-          //location.reload();
         }
-
     })
-
-
   }
+
 }

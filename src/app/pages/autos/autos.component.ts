@@ -151,11 +151,34 @@ next(key: string) {
             icon:'success',
             html: `<h3>Ticket eliminado satisfactoriamente </h3></br>`,
             showConfirmButton: true
-            });
+            })
         }
-
-    });
+    })
   }
+
+  borrarAuto2( auto: AutoModel, i:number ){
+
+    Swal.fire({
+      title: '¿Esta seguro?',
+      text: `Esta seguro que desea eliminar a ${ auto.patente}`,
+      icon: 'question',
+      showConfirmButton: true,
+      showCancelButton: true
+    }).then( resp=> {
+        if ( resp.value){
+          
+          this.autos.splice(i, 1);  //borrar del arreglo
+          this.autosService.borrarAuto( auto.id ).subscribe();
+          
+          Swal.fire({
+            icon:'success',
+            html: `<h3>Cliente eliminado satisfactoriamente </h3></br>`,
+            showConfirmButton: true,
+            })
+        }
+    })
+  }
+
 
   MostrarFoto( auto: AutoModel, i:number){
 
