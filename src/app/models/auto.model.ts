@@ -14,6 +14,8 @@ export class AutoModel{
     hora_salida: number;
     foto:string;
     pagado: boolean;
+    pais: string;
+    tipo: string;
 
 
 

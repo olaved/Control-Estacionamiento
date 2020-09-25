@@ -4,7 +4,7 @@
 
 <div class="container p-2">
   <div class="row">
-    <div class="col-sm text -right">
+    <div class="col-sm text-right">
         <button class="btn btn-primary mb-2" (click)="obtenerCaja()">
           <i class="fa fa-money" aria-hidden="true"></i>
           Obtener Ingresos del día
@@ -18,7 +18,7 @@
   </div>
 </div>
 
-<div>
+<div class="pb-4 pt-2">
   <button class="btn btn-danger btn-block" (click)="downloadPDF()">Download PDF</button>
 </div>
 
@@ -82,7 +82,7 @@
         <td></td>
         <td>Total:</td>
         <td>
-          {{total}}
+          {{totalx() |currency}}
       </td>
       </tr>
     </tbody>

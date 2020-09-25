@@ -49,8 +49,8 @@ export class PagadosComponent implements OnInit {
   
   this.autosService.getAutos().subscribe( resp => this.autos = resp);
   this.usuariosService.getUsuarios().subscribe( resp => this.usuarios = resp);
-  this.total= this.autos.reduce((prev,next)=>prev+next.monto+1,0);
-  console.log('el total= '+ this.total );
+  this.total= this.autos.reduce((prev,next)=>prev+next.monto*1,0);
+  console.log('el total= '+ this.total);
   
 }
 
@@ -78,12 +78,12 @@ public downloadPDF():void {
   let doc = new jsPDF();
 
 
-  doc.text("Listado",15,15);
+  doc.text("Reporte",100,7);
   //doc.fromHTML(DATA,15,15);
   //console.log('la caja'+this.obtenerCaja);
   //doc.text("Ingresos Diarios",15,30);
   //sdoc.fromHTML(CAJA, 15,35);
-  doc.autoTable({ html: '#htmlData', columns: [[ 'Codigo' ],['Patente'],['Fecha Entrada'],['Fecha Salida'],['Hora Entrada'],['Hora Salida'],['Minutos'],['Monto']]  })
+  doc.autoTable({ html: '#htmlData', columns: [[ 'Codigo' ],['Patente'],['Fecha Entrada'],['Fecha Salida'],['Hora Entrada'],['Hora Salida'],['Minutos'],['Monto']]  });
   doc.output('dataurlnewwindow');
 
   //doc.save('angular-demo.pdf');
