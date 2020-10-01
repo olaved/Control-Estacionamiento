@@ -74,8 +74,7 @@ export class RegistroComponent implements OnInit {
           });
 
         });
-    //console.log('Formulario enviado');
-    //console.log(this.usuario);
+
   }
 
 }
