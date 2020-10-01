@@ -28,6 +28,25 @@ export class InicioComponent implements OnInit {
   }
 
 
+  obtenerAutos( ){
+
+    let cantidad = 200;
+
+    for( let car in this.autos){
+
+       if (this.autos[car].activo==true){
+
+        cantidad = cantidad - 1;
+        //suma = suma + this.DatosCaja( this.autos[car] );
+        //let monto = this.DatosCaja( this.autos[car] );
+        //console.log('el monto es:'+ monto+ 'la suma es: ' + suma);
+    
+       }
+    }
+    return cantidad
+  }
+
+
   ObtenerCosto( codigox: String ){
 
     let tupla: [String, number, String, String];

@@ -20,17 +20,18 @@
 </div>
 <hr>
 
+
 <div class="container p-2">
   <div class="row">
     <div class="col-sm text-right">
-        <button class="btn btn-primary mb-2" (click)="obtenerCaja()">
-          <i class="fa fa-money" aria-hidden="true"></i>
-          Obtener Ingresos Tickets Activos  
+        <button class="btn btn-primary mb-2" (click)="obtenerAutos()">
+          <i class="fas fa-car"></i>
+          Cantidad de cupos disponibles  
         </button>
     </div>
      <div class="col-sm text-left">
           <p class="pt-2 font-weight-bold ">
-            ${{obtenerCaja()}}
+            {{obtenerAutos()}}
           </p>
      </div>
   </div>
@@ -60,7 +61,7 @@
     <tbody>
      
 <!--      <tr *ngFor="let auto of autos | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost}; let i =index"> 
--->      <tr *ngFor="let auto of autos | paginate: { itemsPerPage: 100, currentPage: p } | filter:{codigo:filterPost, patente:filterPost, hora:filterPost, fecha:filterPost}; let i =index">
+-->      <tr *ngFor="let auto of autos | paginate: { itemsPerPage: 100, currentPage: p } | filter:{codigo:filterPost, patente:filterPost, tipo:filterPost, pais:filterPost,  fecha:filterPost}; let i =index">
        
         <ng-container *ngIf="auto.activo==true">
       <!--  <th scope="row">{{i+1}}</th>-->

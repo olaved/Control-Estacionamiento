@@ -59,41 +59,6 @@ elUsuario(correo: String){
       }
     } 
 }
-  /*
-  lastPressed = 'nothing';
-  word = '';
-  @HostListener('window:keydown', ['$event.key'])
-  next(key: string) {
-    this.lastPressed = key;
-    this.word =this.word + key;
-    console.log(this.word);
-    //if ((this.word.length)>10){
-      //console.log(this.autos);
-       //console.log(this.autos[i].codigo);
-       if((this.word.indexOf("Enter")>-1)){
-         function reverseString(str) {
-         return str.split('').reverse().join('');
-         }
-         //console.log('contiene el codigo');
-         //console.log(this.word);
-         let code = this.word.replace("Enter","");
-         let codeinvertido = reverseString(code);
-         codeinvertido = codeinvertido.slice(0,13);
-         code = reverseString(codeinvertido);
-         console.log(code);
-         this.word='';
-         for (let i in this.autos){
-            if (code == this.autos[i].codigo){
-              //console.log("Encontro el codigo");
-              if( this.autos[i].pagado != true){
-                this.pagarAuto(this.autos[i], 0 );
-              }
-            }
-       }
-    }
-  }
-
-*/
 
 lastPressed = 'nothing';
 word = '';
@@ -341,21 +306,22 @@ next(key: string) {
 
   }
 
-  obtenerCaja( ){
+  obtenerAutos( ){
 
-    let suma = 0;
+    let cantidad = 200;
 
     for( let car in this.autos){
 
        if (this.autos[car].activo==true){
 
-        suma = suma + this.DatosCaja( this.autos[car] );
-        let monto = this.DatosCaja( this.autos[car] );
+        cantidad = cantidad - 1;
+        //suma = suma + this.DatosCaja( this.autos[car] );
+        //let monto = this.DatosCaja( this.autos[car] );
         //console.log('el monto es:'+ monto+ 'la suma es: ' + suma);
     
        }
     }
-    return suma
+    return cantidad
   }
 
   DatosCaja( auto: AutoModel ){

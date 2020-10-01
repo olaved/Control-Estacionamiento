@@ -1,7 +1,21 @@
-<div class="container p-2 mt-5">
-    <div class="row justify-content-center">
+<div class="container">
+    <div class="row justify-content-center text-center">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm text-center">
+              <h2 class="pt-2 font-weight-bold ">
+                {{obtenerAutos()}}
+              </h2>
+              <button class="btn btn-primary mb-2 pt-2" (click)="obtenerAutos()">
+                <i class="fas fa-car"></i>
+                Cantidad de cupos disponibles  
+              </button>
+          </div>
+        </div>
+      </div>
      
-    <div class="form-group mb-3">
+    <div class="form-group mb-3 pt-3">
         <h3 class="text-center pb-4 login200-form-title">Ingresa tu codigo o patente</h3>
         <div>
         <input type="text"
